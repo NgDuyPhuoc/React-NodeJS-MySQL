@@ -7,5 +7,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, "localhost", () => {
-  console.log(`Server chạy tại http://localhost:${PORT}/`);
+  console.log(`Server chạy tại http://localhost:${PORT}`);
 });
