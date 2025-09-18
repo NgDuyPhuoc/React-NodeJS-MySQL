@@ -2,9 +2,9 @@ import express from "express";
 
 const app = express();
 const PORT = 3000;
-const routes = "/list";
+const routes = "/students";
 
-app.set("json space", 1);
+app.set("json spaces", 2);
 
 const students = [
   { mssv: "151", name: "Nguyễn Duy Phước", age: 19, sex: "Nam" },
