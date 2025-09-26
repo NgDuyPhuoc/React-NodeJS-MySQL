@@ -8,21 +8,29 @@ export default function StudentState() {
         email: "",
     });
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
         console.log("Dữ liệu Form:", formData);
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <input name="name" placeholder="Tên" value={formData.name} onChange={handleChange} />
-            <input name="age" type="number" placeholder="Tuổi" value={formData.age} onChange={handleChange} />
-            <input name="className" placeholder="Lớp" value={formData.className} onChange={handleChange} />
-            <input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+            <div>
+                <input name="name" placeholder="Tên" value={formData.name} onChange={handleChange} />
+            </div>
+            <div>
+                <input name="age" type="number" placeholder="Tuổi" value={formData.age} onChange={handleChange} />
+            </div>
+            <div>
+                <input name="className" placeholder="Lớp" value={formData.className} onChange={handleChange} />
+            </div>
+            <div>
+                <input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+            </div>
             <button type="submit">Submit</button>
         </form>
     );
