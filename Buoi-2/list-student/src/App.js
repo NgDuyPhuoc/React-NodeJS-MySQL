@@ -15,7 +15,7 @@ export default function App() {
       <ul>
         {students.map((sv) => (
           <li key={sv.mssv}>
-            MSSV: {sv.mssv} - {sv.name}, {sv.age} tuổi, Giới tính: {sv.sex}
+            MSSV: {sv.mssv} | Tên: {sv.name} | Tuổi: {sv.age} | Giới tính: {sv.sex}
           </li>
         ))}
       </ul>
