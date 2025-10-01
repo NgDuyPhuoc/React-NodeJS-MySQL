@@ -25,7 +25,7 @@ db.connect(err => {
     }
 });
 
-app.get(routes, (req, res) => {
+app.get(`${routes}`, (req, res) => {
     const sql = "SELECT * FROM sinhvien";
     db.query(sql, (err, results) => {
         if (err) {
@@ -36,7 +36,7 @@ app.get(routes, (req, res) => {
     });
 });
 
-app.post(routes, (req, res) => {
+app.post(`${routes}`, (req, res) => {
     const { ten, tuoi, lop, email } = req.body;
     const sql = "INSERT INTO sinhvien (ten, tuoi, lop, email) VALUES (?, ?, ?, ?)";
     db.query(sql, [ten, tuoi, lop, email], (err) => {
@@ -48,6 +48,39 @@ app.post(routes, (req, res) => {
     });
 });
 
+app.put(`${routes}/:id`, (req, res) => {
+    const { id } = req.params;
+    const { ten, tuoi, lop, email } = req.body;
+    const sql = "UPDATE sinhvien SET ten=?, tuoi=?, lop=?, email=? WHERE id=?";
+
+    db.query(sql, [ten, tuoi, lop, email, id], (err) => {
+        if (err) {
+            return res.status(500).json(err);
+        } else {
+            return res.json({ message: "Cập nhật sinh viên thành công!" });
+        }
+    }
+    )
+})
+
+app.delete(`${routes}/:id`, (req, res) => {
+    const { id } = req.params;
+    const sql = "DELETE FROM sinhvien WHERE id=?";
+
+    db.query(sql, [id], (err) => {
+        if (err) {
+            return res.status(500).json(err);
+        } else {
+            return res.json({ message: "Xóa sinh viên thành công!" });
+        }
+    })
+})
+
 app.listen(PORT, () => {
-    console.log(`Server chạy tại: http://localhost:${PORT}${routes}`);
+    console.log(`Server chạy tại: http://localhost:${PORT}`);
+    console.log("Các route:");
+    console.log("GET    /students");
+    console.log("POST   /students");
+    console.log("PUT    /students/:id");
+    console.log("DELETE /students/:id");
 });
