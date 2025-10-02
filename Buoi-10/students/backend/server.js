@@ -49,7 +49,7 @@ app.post(`${routes}`, (req, res) => {
 });
 
 app.put(`${routes}/:id`, (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const { ten, tuoi, lop, email } = req.body;
     const sql = "UPDATE sinhvien SET ten=?, tuoi=?, lop=?, email=? WHERE id=?";
 
@@ -64,7 +64,7 @@ app.put(`${routes}/:id`, (req, res) => {
 })
 
 app.delete(`${routes}/:id`, (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const sql = "DELETE FROM sinhvien WHERE id=?";
 
     db.query(sql, [id], (err) => {

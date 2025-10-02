@@ -12,7 +12,10 @@ function App() {
 
   const loadStudents = () => {
     axios.get("http://localhost:3000/students")
-      .then(res => setStudents(res.data))
+      .then(res => {
+        console.log("Dữ liệu GET:", res.data);
+        setStudents(res.data)
+      })
       .catch(err => console.error(err));
   }
 
@@ -69,9 +72,9 @@ function App() {
     <div style={{ padding: "20px" }}>
       <h2>Danh sách sinh viên</h2>
       <ul>
-        {students.map((s) => (
+        {students.map((s, index) => (
           <li key={s.id}>
-            {s.ten} | {s.tuoi} | {s.lop} | {s.email}
+            {index + 1}. {s.ten} | {s.tuoi} | {s.lop} | {s.email}
             <button onClick={() => handleEdit(s)}>Sửa</button>
             <button onClick={() => handleDelete(s.id)}>Xóa</button>
           </li>
