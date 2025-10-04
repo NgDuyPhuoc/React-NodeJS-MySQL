@@ -41,10 +41,9 @@ export const putStudents = (req, res) => {
 
 export const deleteStudents = (req, res) => {
     const id = parseInt(req.params.id);
-    const { ten, tuoi, lop, email } = req.body;
     const sql = "DELETE FROM sinhvien WHERE id=?";
 
-    db.query(sql, [ten, tuoi, lop, email, id], err => {
+    db.query(sql, [id], err => {
         if (err) {
             return res.status(500).json(err);
         } else {
